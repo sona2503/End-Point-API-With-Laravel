@@ -20,12 +20,12 @@
    http://127.0.0.1:8000/api/register
 2. **Untuk Menambah data gunakan struktur data** sebagai berikut dengan menggunakan Url di point 1:
    ```sh
- {
-  "name": "userexample",
-  "email": "user@example1.com",
-  "password": "password1234",
-  "password_confirmation": "password1234"
-} 
+   {
+      "name": "userexample",
+      "email": "user@example1.com",
+      "password": "password1234",
+      "password_confirmation": "password1234"
+    } 
 3. **Lakukan edit, hapus, dan lihat berdasarkan ID** dengan URL berikut:
    ```sh
    http://localhost:3000/api/employees/{Id}
