@@ -9,7 +9,7 @@
 2. **Install dependencies** dengan menjalankan perintah:
    ```sh
    composer install
-3. **import database**
+3. **Import database**
 4. **Jalankan server** dengan menjalankan perintah:
    ```sh
    php artisan serve
@@ -26,8 +26,32 @@
       "password": "password1234",
       "password_confirmation": "password1234"
     } 
-3. **Lakukan edit, hapus, dan lihat berdasarkan ID** dengan URL berikut:
+3. **Login dengan menggunakan email dan password** dengan URL berikut:
    ```sh
-   http://localhost:3000/api/employees/{Id}
+   http://127.0.0.1:8000/api/login
+4. **Setelah mendapatkan token** tambahkan ke bagian auth menggunkan Bearer Token untuk menampilkan data, tambah data, edit data dan hapus data.
+5. **Menambah data gunakan** url sebagai berikut:
+   ```sh
+   http://127.0.0.1:8000/api/store
+6. **Menambah data gunakan struktur data** sebagai berikut:
+   ```sh
+   {
+	"nama" : "Mobil",
+	"jumlah" : 12
+   }
+7. **Menampilkan semua data gunakan** url sebagai berikut:
+   ```sh
+   http://127.0.0.1:8000/api/index
+8. **Menampilkan data sesuai Id gunakan** url sebagai berikut:
+   ```sh
+   http://127.0.0.1:8000/api/show/id
+9. **Mengedit data berdasarkan Id gunakan** url sebagai berikut:
+    ```sh
+    http://127.0.0.1:8000/api/update/id
+10. **Menghapus data berdasarkan Id gunakan** url sebagai berikut:
+    ```sh
+    http://127.0.0.1:8000/api/delete/id
+
+
 
  
