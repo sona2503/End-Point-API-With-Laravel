@@ -9,6 +9,13 @@ class Toko extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama', 'jumlah', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id', 
+                            'nama', 
+                            'alamat',
+                            'email',
+                            'no_telepon',
+                            'status',
+                            'created_at',
+                            'updated_at'];
 
 }

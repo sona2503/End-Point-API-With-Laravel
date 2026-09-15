@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Auth;
+namespace App\Http\Controllers\Api\App;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -23,17 +23,16 @@ class TokoController extends Controller
     {
         // Validasi data dari request
         $validatedData = $request->validate([
+            'user_id' => 'required|exists:users,id',
             'nama' => 'required|string|max:255',
-            'jumlah' => 'required|integer',
+            'alamat' => 'nullable|string',
+            'email' => 'nullable|email|max:255',
+            'no_telepon' => 'nullable|string|max:20',
+            'status' => 'required|in:aktif,non aktif',
         ]);
 
         // Simpan data menggunakan model Toko
-        $toko = Toko::create([
-            'nama' => $validatedData['nama'],
-            'jumlah' => $validatedData['jumlah'],
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $toko = Toko::create($validatedData);
 
         // Kembalikan respons JSON
         return response()->json([
@@ -44,7 +43,7 @@ class TokoController extends Controller
     }
     
 
-
+    //show toko's data by id
     public function show(string $id)
     {
         // Mengambil data Toko berdasarkan id
@@ -67,15 +66,9 @@ class TokoController extends Controller
     
     public function update(Request $request, string $id)
     {
-        // Validasi data yang dikirim dari request
-        $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'jumlah' => 'required|integer|min:0',
-        ]);
-    
         // Cari data Toko berdasarkan id
         $toko = Toko::find($id);
-    
+
         // Jika data tidak ditemukan
         if (!$toko) {
             return response()->json([
@@ -83,13 +76,20 @@ class TokoController extends Controller
                 'message' => 'Data tidak ditemukan',
             ], 404);
         }
-    
+
+        // Validasi data yang dikirim dari request
+        $validatedData = $request->validate([
+            'user_id' => 'sometimes|required|exists:users,id',
+            'nama' => 'sometimes|required|string|max:255',
+            'alamat' => 'nullable|string',
+            'email' => 'nullable|email|max:255',
+            'no_telepon' => 'nullable|string|max:20',
+            'status' => 'sometimes|required|in:aktif,non aktif',
+        ]);
+
         // Update data toko
-        $toko->nama = $validatedData['nama'];
-        $toko->jumlah = $validatedData['jumlah'];
-        $toko->updated_at = now(); 
-        $toko->save(); 
-    
+        $toko->update($validatedData);
+
         // Return response JSON setelah update berhasil
         return response()->json([
             'success' => true,
