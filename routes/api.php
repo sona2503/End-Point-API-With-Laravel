@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\App\TokoController;
 use App\Http\Controllers\Api\App\ProdukController;
+use App\Http\Controllers\Api\App\TransaksiController;
 
 
 
@@ -33,5 +34,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('produk/show/{id}', [ProdukController::class, 'show'])->middleware('auth:sanctum');
     Route::put('produk/update/{id}', [ProdukController::class, 'update'])->middleware('auth:sanctum');
     Route::delete('produk/delete/{id}', [ProdukController::class, 'destroy'])->middleware('auth:sanctum');
+
+    //route for transaksi
+    Route::get('transaksi/index', [TransaksiController::class, 'index']);
+    Route::post('transaksi/store', [TransaksiController::class, 'store']);
+    Route::get('transaksi/show/{id}', [TransaksiController::class, 'show']);
+    Route::delete('transaksi/delete/{id}', [TransaksiController::class, 'destroy']);
     
 });
